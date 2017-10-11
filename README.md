@@ -5,9 +5,11 @@ Date: <br>
 Project Name: lab6
 
 # Description
-In this lab, you will work in a ** team ** . Since this is the case, the code given to you is extremely minimal. You will work together to control an LED dot matrix through two shift registers.
+In this lab, you will work in a **team** . Since this is the case, the code given to you is extremely minimal. You will work together to control an LED dot matrix through two shift registers.
 
 ## Expected Outcome
+![Dot Matrix](https://storage.googleapis.com/ece-gitlab/lab6.gif)
+
 # Instructions
 You are given a boiler-plate main.cpp function. You and your team must create other necessary source and header files with functions that fulfill the overall requirements.
 

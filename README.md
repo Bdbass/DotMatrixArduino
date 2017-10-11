@@ -1,4 +1,4 @@
-Course Name: ece372a-online <br>
+Course Name: ece372a <br>
 Authors: <br>
 NetIDs: <br>
 Date: <br>

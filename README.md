@@ -10,6 +10,8 @@ In this lab, you will work in a **team** . Since this is the case, the code give
 ## Expected Outcome
 ![Dot Matrix](https://storage.googleapis.com/ece-gitlab/lab6.gif)
 
+This gif is a video of the letter "V" being shift gradually downward and wrapping around at the top of the dot matrix.
+
 # Instructions
 You are given a boiler-plate main.cpp function. You and your team must create other necessary source and header files with functions that fulfill the overall requirements.
 

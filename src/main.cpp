@@ -37,7 +37,7 @@ ISR(SPI_STC_vect){
   //set SS high
   PORTB |= (1 << PORTB0);
 
-  SPDR = 'V';//data being sent
+  SPDR = 'V';//data being sent  - this data currently is useless - FIXME
 
   //set SS to low
   PORTB &= ~(1 << PORTB0);

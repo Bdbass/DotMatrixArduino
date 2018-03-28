@@ -11,7 +11,4 @@ PORTB |= (1 << PORTB0);
 
 //enable the interrupt, SPI, mastermode, default clock, and fosc/128
 SPCR |= (1 << SPIE) | (1 << SPE) | (1 << MSTR)| (1 << SPR1) | (1 << SPR0);
-
-SPCR &= ~((1 << CPOL) | (1 << CPHA));
-
 }

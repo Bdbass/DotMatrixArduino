@@ -33,7 +33,7 @@ int main() {
   PORTB &= ~(1 << PORTB0); //starts the internal SPI clock
 
   //fill the SPDR register with something
-  data = 0x00;
+  data = 0x42;
   SPDR = data;//just an arbitrary data value, it has no significance
 
   while(1){

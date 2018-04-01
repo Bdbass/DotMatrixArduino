@@ -18,6 +18,7 @@ typedef enum stateType_enum{
 volatile stateType state = shift;
 
 volatile unsigned char data;
+volatile unsigned char data2;
 volatile unsigned char counter;
 
 
@@ -34,6 +35,7 @@ int main() {
 
   //fill the SPDR register with something
   data = 0x42;
+  data2 = 4;
   SPDR = data;//just an arbitrary data value, it has no significance
 
   while(1){
@@ -41,7 +43,7 @@ int main() {
     switch(state){
       case shift://update the data variable, changed in ISR
           state = wait;
-
+          data = 4;
           /*implement shift here and write the data*/
 
           break;
@@ -59,14 +61,14 @@ int main() {
 ISR(SPI_STC_vect){
   //set SS high
   PORTB |= (1 << PORTB0);
-
+  
   SPDR = data;//data being sent
-
+  SPDR = data2;
   //set SS to low
   PORTB &= ~(1 << PORTB0);
 
 
   state = shift; //go to next state in State machine
-  counter = (counter % 8) + 1;//this counter will be used to parse through the data in the state machine 
+  counter = (counter % 8) + 1;//this counter will be used to parse through the data in the state machine
 
 }

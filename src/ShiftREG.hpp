@@ -4,6 +4,6 @@
 #include <avr/io.h>
 
 void initShiftREG();
-void shiftData(uchar16_t character);
+void shiftData(unsigned char character);
 
 #endif

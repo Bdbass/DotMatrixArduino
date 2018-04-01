@@ -1,3 +1,5 @@
+/*
+
 // Author:
 // Net ID:
 // Date:
@@ -44,7 +46,7 @@ int main() {
       case shift://update the data variable, changed in ISR
           state = wait;
           data = 4;
-          /*implement shift here and write the data*/
+          //implement shift here and write the data
 
           break;
       case wait://waiting for the ISR
@@ -61,7 +63,7 @@ int main() {
 ISR(SPI_STC_vect){
   //set SS high
   PORTB |= (1 << PORTB0);
-  
+
   SPDR = data;//data being sent
   SPDR = data2;
   //set SS to low
@@ -72,3 +74,5 @@ ISR(SPI_STC_vect){
   counter = (counter % 8) + 1;//this counter will be used to parse through the data in the state machine
 
 }
+
+*/

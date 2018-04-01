@@ -2,29 +2,11 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "SPI.hpp"
-//#include "DotMatrix.hpp"
+#include "DotMatrix.hpp"
+#include "ShiftREG.hpp"
+#include "timer.hpp"
 
-volatile int dataValues[] = {
-  0b01111110,
-  0b01111110,
-  0b11111111,//blank
-  0b10111101,
-  0b11111111,//blank
-  0b11011011,
-  0b11111111,//blank
-  0b11100111
-};
 
-volatile int columnValues[] = {
-  0b00000001,
-  0b00000010,
-  0b00000100,//blank
-  0b00001000,
-  0b00010000,//blank
-  0b00100000,
-  0b01000000,//blank
-  0b10000000
-};
 
 typedef enum stateType_enum{
   shift, wait
@@ -34,15 +16,8 @@ volatile stateType state = shift;
 volatile int shift_delay = 1;
 volatile int count = 0;
 
-void initShiftREG(){
-    DDRL |= (1 << DDL0) | (1 << DDL2) | (1 << DDL4);  //setting SRCLR as output and setting OE as output
-    PORTL &= ~((1 << DDL0) | (1 << DDL2)); // resets when we start
-    _delay_ms(1);
-    PORTL |= (1 << DDL0) | (1 << DDL2); // finishes the restart
-}
 
-
-int main2(){
+int main(){
 
   initSPI();
   sei();
@@ -84,7 +59,7 @@ ISR(SPI_STC_vect){
   while (!(SPSR & (1 << SPIF))); // waits for data to be sent low
   PORTL |= (1 << DDL0); // put latch high to prevent overflow
 
-  _delay_ms(1);
+  delayUs(1);//_delay_ms(1);
 
   PORTL &= ~(1 << DDL0); // latch low again
   SPDR = dataValues[count]; // sends data
@@ -94,10 +69,11 @@ ISR(SPI_STC_vect){
   PORTB &= ~(1<<PORTB0); // slave select low
   //SPCR &= ~(1 << SPIE); // turn off ISR used for debugging
   count = ++count%8;
-  _delay_ms(2);
+  delayUs(2);//_delay_ms(2);
+
 
   shift_delay++;
-  if (shift_delay == 32){
+  if (shift_delay == 1024){
     state = shift;
     shift_delay = 1;
   }

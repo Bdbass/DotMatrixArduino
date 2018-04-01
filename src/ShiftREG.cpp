@@ -1,8 +1,12 @@
-#include "ShiftReg.hpp"
+#include "ShiftREG.hpp"
+#include "timer.hpp"
 #include <avr/io.h>
 
 void initShiftREG(){
     DDRL |= (1 << DDL0) | (1 << DDL2) | (1 << DDL4);  //setting SRCLR as output and setting OE as output
+    PORTL &= ~((1 << DDL0) | (1 << DDL2)); // resets when we start
+    delayUs(1000);//_delay_ms(1);
+    PORTL |= (1 << DDL0) | (1 << DDL2); // finishes the restart
 }
 
 void shiftData(unsigned char character){
